@@ -1,0 +1,42 @@
+.accordion-container {
+    width: 1200px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid 2px transparent;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.accordion-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em 1em;
+    cursor: pointer;
+}
+
+
+.accordion-button {
+    background: none;
+    border: 2px solid grey;
+    width: 2em;
+    color: grey;
+    height: 2em;
+    font-size: 1.25em;
+}
+
+.accordion-active {
+    color: rgb(76, 171, 202);
+    border-color: rgb(76, 171, 202);
+}
+
+.accordion-button:focus {
+    outline: none;
+}
+
+.accordion-border {
+    border: solid 2px rgb(76, 171, 202);
+}

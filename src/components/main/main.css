@@ -1,0 +1,43 @@
+.main {
+    margin-top: 80px;
+    width: 100vw;
+}
+
+.code {
+    background-color: rgb(43, 43, 43);
+    color: white;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.blue {
+    color: rgb(45, 125, 201)
+}
+  
+.violet {
+    color: rgb(174, 77, 199)
+}
+  
+.yellow {
+    color: rgb(243, 235, 117)
+}
+  
+.green {
+    color: rgb(70, 158, 99)
+}
+
+.orange {
+    color: rgb(184, 127, 22);
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-vertical-container  {
+    display: flex;
+    flex-direction: column;
+    width: 500px
+}
+  

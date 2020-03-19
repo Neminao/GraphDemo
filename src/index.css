@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.blue {
+  color: rgb(45, 125, 201)
+}
+
+.violet {
+  color: rgb(139, 24, 168)
+}
+
+.yellow {
+  color: rgb(243, 235, 117)
+}
+
+.green {
+  color: rgb(70, 158, 99)
+}
