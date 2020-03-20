@@ -3,28 +3,17 @@ import Anchor from '../basic/Anchor';
 import "./header.css";
 import AnchorType from '../../types/AnchorType';
 
-export default function Header(props: any) {
-    const [selected, setSelected] = useState("");
+export default function Header(props: {setSelected: any, selected: string}) {
     const anchors: AnchorType[] = [
         {
-            id: "1",
-            href: "#intro",
+            id: "intro",
+            href: "",
             displayText: "Uvod"
         },
         {
-            id: "2",
-            href: "#intro",
-            displayText: "Uvod"
-        },
-        {
-            id: "3",
-            href: "#intro",
-            displayText: "Uvod"
-        },
-        {
-            id: "4",
-            href: "#intro",
-            displayText: "Uvod"
+            id: "graphdemo",
+            href: "",
+            displayText: "Demo"
         }
     ]
     return <header className="header">
@@ -32,11 +21,10 @@ export default function Header(props: any) {
             {
                 anchors.map((anchor: AnchorType) => 
                     <Anchor 
-                        key={anchor.id} 
-                        href={anchor.href} 
-                        class={selected === anchor.id ? "selected anchor" : "anchor"} 
+                        key={anchor.id}
+                        class={props.selected === anchor.id ? "selected anchor" : "anchor"} 
                         displayText={anchor.displayText}
-                        onClick={setSelected}
+                        onClick={props.setSelected}
                         id={anchor.id}
                     />
                 )}

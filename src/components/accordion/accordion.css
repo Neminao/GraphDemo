@@ -29,8 +29,8 @@
 }
 
 .accordion-active {
-    color: rgb(76, 171, 202);
-    border-color: rgb(76, 171, 202);
+    color: var(--main-blue);
+    border-color: var(--main-blue);
 }
 
 .accordion-button:focus {
@@ -38,5 +38,5 @@
 }
 
 .accordion-border {
-    border: solid 2px rgb(76, 171, 202);
+    border: solid 2px var(--main-blue);
 }

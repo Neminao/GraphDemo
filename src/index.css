@@ -27,3 +27,16 @@ code {
 .green {
   color: rgb(70, 158, 99)
 }
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --main-blue: rgb(76, 171, 202);
+}

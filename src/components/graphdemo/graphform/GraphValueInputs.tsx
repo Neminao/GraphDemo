@@ -13,7 +13,7 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
 
     handleChange = (value: string, id: string) => {
         this.setState(prevState => {
-            prevState.inputValues[id] = value;
+            prevState.inputValues[id] = +value;
             return {
                 inputValues: prevState.inputValues
             }
@@ -59,15 +59,15 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
     render() {
         const { inputValues, valuesID } = this.state;
         const { labels } = this.props
-        return <tr>
+        return <tr className="graph-form-row">
             <td>
-                <Input type="text" value={valuesID} onChange={this.handleValuesID} id="valuesID" class="graph-input" placeholder="naziv kolone grafikona" />
+                <Input type="text" value={valuesID} onChange={this.handleValuesID} id="valuesID" class="graph-input" placeholder="naziv grupe kolona" />
             </td>
-            {labels.map(label => <td>
+            {labels.map(label => <td key={label}>
                 <Input
                     class="graph-input"
-                    type='text'
-                    value={inputValues[label]}
+                    type='number'
+                    value={inputValues[label] || 0}
                     onChange={this.handleChange}
                     id={label}
                     placeholder="vrednost za labelu" />
@@ -75,7 +75,7 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
             {labels[0] && valuesID ?
                 <td >
                     <button onClick={this.handleSubmit} className="graph-button">
-                        Dodaj
+                        Dodaj grupu
                         </button>
                 </td> :
                 <td>

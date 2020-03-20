@@ -7,7 +7,7 @@ interface GFState {
     graphData: any[]
 }
 
-export default class GraphForm extends React.Component<{setGraphData: any}, GFState> {
+export default class GraphForm extends React.Component<{ setGraphData: any }, GFState> {
     constructor(props: any) {
         super(props)
         this.state = {
@@ -17,7 +17,7 @@ export default class GraphForm extends React.Component<{setGraphData: any}, GFSt
     }
 
     handleLabelSubmit = (label: string) => {
-        if (!this.state.labels.includes(label)) {
+        if (!this.state.labels.includes(label) && this.state.labels.length<10) {
             this.setState({ labels: [...this.state.labels, label] });
         }
     }
@@ -35,39 +35,46 @@ export default class GraphForm extends React.Component<{setGraphData: any}, GFSt
     }
 
     setGraphData = () => {
-        this.props.setGraphData(this.state.graphData)
+        this.props.setGraphData(this.state.graphData, this.state.labels)
     }
 
     render() {
         const { labels, graphData } = this.state;
         return <div>
-            <div className="graph-form-labels">
-                <div className="graph-label"></div>
-                {labels.map((label, index) => {
-                    return <div className="graph-label" >
-                        <div >{label}</div>
-                        <button id={index + ""} onClick={this.deleteLabel} className="graph-label-button">X</button>
-                    </div>
-                })}
-                <SingleInputForm
-                    handleSubmit={this.handleLabelSubmit}
-                    buttonLabel=""
-                    hideButton={true}
-                    placeholder="dodaj labelu"
-                    inputClass="graph-input" />
-            </div>
-            <div >
-                { graphData.map(data => <div className="graph-form-labels">
-                    <div className="graph-label" >{data.label}</div>{data.array.map((value: any) => <div className="graph-label" >{value.value}</div>)}
-                </div>)}
-            </div>
-            <div>
-                <GraphValueInputs labels={labels} handleSubmit={this.handleSubmit}/>
-            </div>
-            <div>
-            <button onClick={this.setGraphData}>Prikazi grafikon</button>
-            </div>
+            <table className="graph-table">
+                <tbody>
 
+                <tr className="graph-form-row">
+                    <td>Naziv kolona</td>
+                    {labels.map((label, index) => {
+                        return <td key={label}>
+                            <div className='graph-label' >
+                                <div >{label}</div>
+                                {/*<button id={index + ""} onClick={this.deleteLabel} >X</button>*/}
+                            </div>
+                        </td>
+                    })}
+                    {labels.length < 10 ? <td>
+                        <SingleInputForm
+                            handleSubmit={this.handleLabelSubmit}
+                            buttonLabel="Dodaj"
+                            hideButton={false}
+                            buttonClass="graph-button"
+                            placeholder="dodaj labelu"
+                            inputClass="graph-input" />
+                    </td> : <td></td>}
+                </tr>
+                {graphData.map(data => <tr className="graph-form-row" key={data.label}>
+                    <td>{data.label}</td>
+                    {data.array.map((value: any, index: number) => <td key={index}>{value.value}</td>)}
+                    <td></td>
+                </tr>)}
+                <GraphValueInputs labels={labels} handleSubmit={this.handleSubmit} />
+                </tbody>
+            </table>
+            <div className="graph-footer">
+            <button onClick={this.setGraphData} className="graph-button">Prikazi grafikon</button>
+            </div>
         </div>
     }
 }

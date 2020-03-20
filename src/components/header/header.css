@@ -25,6 +25,9 @@
     padding: 0.5em;
     text-decoration: none;
     color: white;
+    background: transparent;
+    font-size: 1em;
+    border: none
 }
 
 .anchor:hover {

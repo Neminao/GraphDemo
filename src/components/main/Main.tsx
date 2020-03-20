@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Intro from '../intro/Intro';
-import "./main.css"
+import "./main.css";
 import Components from '../componentsreact/Components';
 import Properties from '../stateprops/Properties';
 import State from '../stateprops/State';
@@ -8,12 +8,21 @@ import FormDemo from '../demo/form/FormDemo';
 import Accordion from '../accordion/Accordion';
 import LifecycleDemo from '../demo/lifecycle/LifecycleDemo';
 import GraphContainer from '../graphdemo/GraphContainer';
+import Header from '../header/Header';
 
 
-class Main extends Component<{}, {}> {
+class Main extends Component<{}, {selected: any, pages: any}> {
+    constructor(props: any){
+        super(props);
+        this.state = {
+            selected: "intro",
+            pages: {}
+        };
+    }
 
-    render() {
-        return <div className="main">
+    componentDidMount(){
+        const pages = {
+            intro: <div>
             <Intro />
 
             <Accordion title="Komponente">
@@ -29,8 +38,23 @@ class Main extends Component<{}, {}> {
             <Accordion title="Lifecycle metode">
                 <LifecycleDemo />
             </Accordion>
-            <GraphContainer />
+            </div>,
+            graphdemo: <GraphContainer />
+        }
+        this.setState({
+            pages
+        })
+    }
 
+    setSelected = (selected: string) => {
+        this.setState({
+            selected
+        })
+    }
+    render() {
+        return <div className="main">
+            <Header setSelected={this.setSelected} selected={this.state.selected}/>
+            {this.state.pages[this.state.selected]}
         </div>
     }
 }

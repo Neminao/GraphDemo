@@ -10,9 +10,17 @@ interface GraphItem {
     name?: string;
 }
 
-export default class Canvas extends React.Component<{graphData: GraphData[]}, { canvasHeight: number, canvasWidth: number, canvasPadding: number }> {
+export default class Canvas extends React.Component<{
+    graphData: GraphData[],
+    labels: string[],
+    graphName: string
+}, {
+    canvasHeight: number,
+    canvasWidth: number,
+    canvasPadding: number
+}> {
     constructor(props: any) {
-        super(props)
+        super(props);
         this.state = {
             canvasHeight: 400,
             canvasWidth: 1000,
@@ -22,111 +30,12 @@ export default class Canvas extends React.Component<{graphData: GraphData[]}, { 
     canvas = React.createRef<HTMLCanvasElement>();
 
     componentDidMount() {
-        let c: HTMLCanvasElement | null = this.canvas.current;
-        //if(c)
-        //this.createGrid(c.getContext('2d'));
-        let graph: GraphData[] = [
-            {
-                label: "March",
-                array: [
-                    {
-                        value: 25,
-                    },
-                    {
-                        value: 35
-                    },
-                    {
-                        value: 75
-                    }
-                ]
-            },
-            {
-                label: "April",
-                array: [
-                    {
-                        value: 25
-                    },
-                    {
-                        value: 205
-                    },
-                    {
-                        value: 75
-                    }
-                ]
-            },
-            {
-                label: "May",
-                array: [
-                    {
-                        value: 10
-                    },
-                    {
-                        value: 35
-                    },
-                    {
-                        value: 105
-                    },
-                    {
-                        value: 175
-                    },
-                    {
-                        value: 300
-                    }
-                ]
-            },
-            {
-                label: "June",
-                array: [
-                    {
-                        value: 10
-                    },
-                    {
-                        value: 35
-                    },
-                    {
-                        value: 105
-                    },
-                    {
-                        value: 75
-                    },
-                    {
-                        value: 10
-                    },
-                    {
-                        value: 35
-                    },
-                    {
-                        value: 105
-                    },
-                    {
-                        value: 75
-                    },
-                ]
-            }
-        ]
-        let colors = [
-            "#FFC09F",
-            "#81F4E1",
-            "#56CBF9",
-            "#FF729F",
-            "#FFEE93",
-            "#EF476F",
-            "#FFD166",
-            "#06D6A0",
-            "#118AB2",
-            "#073B4C"
-        ]
-        if (c) {
-            let ctx = c.getContext('2d')
-            if (ctx)
-                this.drawGraph(this.props.graphData, ctx, colors);
-        }
-
+        this.fixCanvas()
     }
 
-    componentDidUpdate(prevProps: {graphData: GraphData[]}) {
+    componentDidUpdate(prevProps: { graphData: GraphData[] }) {
         if (prevProps.graphData !== this.props.graphData) {
-          this.refreshCanvas();
+            this.refreshCanvas();
         }
     }
 
@@ -148,10 +57,44 @@ export default class Canvas extends React.Component<{graphData: GraphData[]}, { 
             let ctx = c.getContext('2d')
             if (ctx) {
                 ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight);
+                this.drawLabels(ctx, this.props.labels, colors)
                 this.drawGraph(this.props.graphData, ctx, colors);
+
             }
         }
     }
+
+    fixCanvas = () => {
+        //get DPI
+        let dpi = window.devicePixelRatio;
+        //get canvas
+        let mycanvas = this.canvas.current;
+        //get context
+        if (mycanvas) {
+
+            //get CSS height
+            //the + prefix casts it to an integer
+            //the slice method gets rid of "px"
+            let style_height = +getComputedStyle(mycanvas).getPropertyValue("height").slice(0, -2);
+            //get CSS width
+            let style_width = +getComputedStyle(mycanvas).getPropertyValue("width").slice(0, -2);
+            //scale the canvas
+            let canvasWidth = style_width * dpi;
+            let canvasHeight = style_height * dpi;
+            let canvasPadding = this.state.canvasPadding * dpi;
+            mycanvas.setAttribute('height', canvasHeight + "");
+            mycanvas.setAttribute('width', canvasWidth + "");
+            this.setState({
+                canvasHeight,
+                canvasWidth,
+                canvasPadding
+            })
+
+        }
+    }
+
+
+
 
     createGrid = (ctx: CanvasRenderingContext2D) => {
         let rows = 2;
@@ -207,11 +150,9 @@ export default class Canvas extends React.Component<{graphData: GraphData[]}, { 
         let scaleMax: number = this.getMaxScaleValue(maxValue);
         let xCoord: number = this.state.canvasPadding + Math.floor(sectionWidth * 0.2);
         let k: number = this.calculateK(scaleMax, this.state.canvasHeight - this.state.canvasPadding * 2);
-        console.log(maxValue)
-        console.log(scaleMax)
         graphData.forEach((gd, index) => {
             columnWidth = this.calculateColumnWidth(gd.array.length, sectionWidth);
-            this.centerTextOnCanvas(ctx, gd.label, xCoord, this.state.canvasHeight - this.state.canvasPadding + 15, sectionWidth)
+            this.centerTextOnCanvas(ctx, gd.label, xCoord, this.state.canvasHeight - this.state.canvasPadding, sectionWidth)
             gd.array.forEach((data: GraphItem, i: number) => {
                 this.updateCanvas(ctx, colors[i], columnWidth, data.value, xCoord, k)
                 xCoord += columnWidth;
@@ -221,9 +162,24 @@ export default class Canvas extends React.Component<{graphData: GraphData[]}, { 
         })
     }
 
-    centerTextOnCanvas = (ctx: CanvasRenderingContext2D, txt: string, currentLeft: number, top: number, sectionWidth: number) => {
-        let left: number = currentLeft + sectionWidth / 2 - ctx.measureText(txt).width / 2 - sectionWidth * 0.1
-        ctx.strokeText(txt, left, top)
+    drawLabels = (ctx: CanvasRenderingContext2D, labels: string[], colors: string[]) => {
+        let left = this.state.canvasPadding;
+        labels.forEach((label, index) => {
+            ctx.fillStyle = colors[index];
+            ctx.strokeStyle = colors[index];
+            ctx.lineWidth = 1;
+            ctx.font = this.state.canvasHeight / 40 + "px Roboto";
+            ctx.fillText(label, left, 50);
+            left += ctx.measureText(label).width + 10
+        })
+    }
+
+    centerTextOnCanvas = (ctx: CanvasRenderingContext2D, txt: string, currentLeft: number, currentTop: number, sectionWidth: number) => {
+        let left: number = currentLeft + sectionWidth / 2 - ctx.measureText(txt).width / 2 - sectionWidth * 0.1;
+        let top: number = currentTop + this.state.canvasHeight / 40;
+        ctx.font = this.state.canvasHeight / 40 + "px Roboto";
+        ctx.fillStyle = 'black';
+        ctx.fillText(txt, left, top)
     }
 
     updateCanvas(ctx: CanvasRenderingContext2D, color: string, width: number, height: number, left: number, scale: number) {
@@ -231,12 +187,11 @@ export default class Canvas extends React.Component<{graphData: GraphData[]}, { 
         ctx.fillStyle = color;
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
-        ctx.font = "10px Arial";
+        ctx.font = this.state.canvasHeight / 40 + "px Roboto";
         ctx.beginPath();
         ctx.fillRect(left, this.state.canvasHeight - this.state.canvasPadding - top, width, top);
-        //ctx.rect(left, top, width, height);
-        ctx.strokeText(height + "", left, this.state.canvasHeight - this.state.canvasPadding - top)
-        //ctx.stroke();
+        ctx.fillStyle = "black";
+        ctx.fillText(height + "", left, this.state.canvasHeight - this.state.canvasPadding - top);
     }
 
     render() {
