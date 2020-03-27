@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/GraphDemo/static/css/main.bb452935.chunk.css",
+    "main.js": "/GraphDemo/static/js/main.c5cedd0a.chunk.js",
+    "main.js.map": "/GraphDemo/static/js/main.c5cedd0a.chunk.js.map",
+    "runtime-main.js": "/GraphDemo/static/js/runtime-main.38c2a882.js",
+    "runtime-main.js.map": "/GraphDemo/static/js/runtime-main.38c2a882.js.map",
+    "static/js/2.4ba70a4d.chunk.js": "/GraphDemo/static/js/2.4ba70a4d.chunk.js",
+    "static/js/2.4ba70a4d.chunk.js.map": "/GraphDemo/static/js/2.4ba70a4d.chunk.js.map",
+    "index.html": "/GraphDemo/index.html",
+    "precache-manifest.e9ccf0964b2aeccb4873f8d783cadcd2.js": "/GraphDemo/precache-manifest.e9ccf0964b2aeccb4873f8d783cadcd2.js",
+    "service-worker.js": "/GraphDemo/service-worker.js",
+    "static/css/main.bb452935.chunk.css.map": "/GraphDemo/static/css/main.bb452935.chunk.css.map",
+    "static/js/2.4ba70a4d.chunk.js.LICENSE.txt": "/GraphDemo/static/js/2.4ba70a4d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.38c2a882.js",
+    "static/js/2.4ba70a4d.chunk.js",
+    "static/css/main.bb452935.chunk.css",
+    "static/js/main.c5cedd0a.chunk.js"
+  ]
+}
