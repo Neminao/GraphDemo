@@ -24,9 +24,9 @@ export default class FormDemo extends React.Component<{}, { submitValues: string
     render() {
         return <div>
             <div>
-                Forme u React-u se mogu ponašati kao obične HTML forme, ali one se često obrađuju uz pomoc metoda koje napišemo. <br />
+                Forme u React-u se mogu ponašati kao obične HTML forme, ali one se često obrađuju uz pomoc metoda koje napišemo. Time možemo da sprečimo da se stranica ponovo učitava i samo izmenimo jednu komponentu koja je potrebna. <br />
                 Ukoliko koristimo class komponente metode moramo da bind za "this" kome pripada u konstruktoru,
-                 ali ukoliko se koriste arrow metode to nije potrebno jer vec u sebi sadrže "this".<br></br>
+                 ali ukoliko se koriste arrow metode to nije potrebno jer vec u sebi sadrže "this". <br></br>
                  Primer:
             </div>
 
@@ -37,7 +37,7 @@ export default class FormDemo extends React.Component<{}, { submitValues: string
                 {"}"}<br /><br />
                 {"handleSubmit(event) {"} <br />
                 {"alert(event.target.value);"}<br />
-                {"event.preventDefault(); //sprecava refresh stranice"}
+                {"event.preventDefault(); //sprecava refresh stranice"} <br/>
                 {"}"}<br />
                 <br />
                 {"setValue = (event) => {"} <br />

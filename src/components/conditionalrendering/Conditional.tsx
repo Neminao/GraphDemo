@@ -1,5 +1,6 @@
 import React from 'react';
 import ConditionalRendering from './ConditionalRendering';
+import Code from '../basic/Code';
 
 export default function Conditional(props: {}) {
     let example = `
@@ -12,16 +13,13 @@ export default function Conditional(props: {}) {
             <button onClick={()=> setCondition(!condition)}>Posalji zahtev</button>\n
         </div>\n
     }
-    `
-    let formatted = example.split('\n').map((item, i) => <p style={{ margin: 0 }} key={i}>{item}</p>);
+    `;
     return <div>
         <div>
         <div>
             Conditional rendering je mogućnost da se na osnovu nekog uslova (iz state ili properties) prikažu razliciti elementi. Može se odnositi na čitave elemente, ali takođe se mogu menjati i parametri nekog elementa.
         </div>
-        <div className="code">
-            {formatted}
-        </div>
+        <Code text={example} />
         </div>
         <ConditionalRendering />
     </div>

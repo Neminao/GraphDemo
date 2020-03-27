@@ -11,6 +11,7 @@ import GraphContainer from '../graphdemo/Graph';
 import Header from '../header/Header';
 import Hooks from '../hooks/Hooks';
 import Conditional from '../conditionalrendering/Conditional'
+import Standards from '../standards/Standards';
 
 
 class Main extends Component<{}, {selected: any, pages: any}> {
@@ -45,6 +46,9 @@ class Main extends Component<{}, {selected: any, pages: any}> {
             </Accordion>
             <Accordion title="Conditional Rendering">
                 <Conditional />
+            </Accordion>
+            <Accordion title="Standardi">
+                <Standards />
             </Accordion>
             </div>,
             graphdemo: <GraphContainer />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Code from '../basic/Code';
 
 export default function (props: {}) {
     const [text, setText] = useState("");
@@ -12,14 +13,11 @@ export default function (props: {}) {
         </div>\n
     }
     `
-    let formatted = example.split('\n').map((item, i) => <p style={{ margin: 0 }} key={i}>{item}</p>);
     return <div>
         <div>
             {text}<br />
             <input type="text" value={text} onChange={event => setText(event.target.value)} />
         </div>
-        <div className="code">
-            {formatted}
-        </div>
+        <Code text={example} />
     </div>
 }

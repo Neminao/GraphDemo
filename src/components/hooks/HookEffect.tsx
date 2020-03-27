@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Code from '../basic/Code';
 
 export default function HookEffect(props: {}) {
     const [count, setCount] = useState(0);
@@ -21,7 +22,7 @@ export default function HookEffect(props: {}) {
     </div>\n
     }
     `
-    let formatted = example.split('\n').map((item, i) => <p style={{ margin: 0 }} key={i}>{item}</p>);
+    
 
     return (
         <div>
@@ -32,9 +33,7 @@ export default function HookEffect(props: {}) {
                 </button>
             </div>
 
-            <div className="code">
-                {formatted}
-            </div>
+            <Code text={example} />
         </div>
     );
 }
