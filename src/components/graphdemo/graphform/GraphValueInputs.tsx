@@ -13,9 +13,10 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
 
     handleChange = (value: string, id: string) => {
         this.setState(prevState => {
-            prevState.inputValues[id] = +value;
+            let inputValues = {...prevState.inputValues};
+            inputValues[id] = +value;
             return {
-                inputValues: prevState.inputValues
+                inputValues
             }
         })
     }
@@ -30,6 +31,7 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
         const { valuesID, inputValues } = this.state;
         let inputArray = [];
         for (let v in inputValues) {
+            if(inputValues[v])
             inputArray.push({
                 value: inputValues[v],
                 name: v
@@ -46,11 +48,12 @@ export default class GraphValueInputs extends React.Component<{ labels: string[]
 
     clearValues = () => {
         this.setState(prevState => {
-            for (let key in prevState.inputValues) {
-                prevState.inputValues[key] = ""
+            let inputValues = {...prevState.inputValues};
+            for (let key in inputValues) {
+                inputValues[key] = ""
             }
             return {
-                inputValues: prevState.inputValues,
+                inputValues,
                 valuesID: ""
             }
         })

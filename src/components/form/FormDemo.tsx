@@ -1,11 +1,13 @@
 import React from 'react';
 import SingleInputForm from '../basic/SingleInputForm';
 
-export default class FormDemo extends React.Component<{}, { submitValues: string[] }> {
+export default class FormDemo extends React.Component<{}, { submitValues: string[], condition: boolean, firstName: string }> {
     constructor(props: {}) {
         super(props);
         this.state = {
-            submitValues: []
+            submitValues: [],
+            condition: false,
+            firstName: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,6 +24,7 @@ export default class FormDemo extends React.Component<{}, { submitValues: string
     }
 
     render() {
+        const { condition } = this.state;
         return <div>
             <div>
                 Forme u React-u se mogu ponašati kao obične HTML forme, ali one se često obrađuju uz pomoc metoda koje napišemo. Time možemo da sprečimo da se stranica ponovo učitava i samo izmenimo jednu komponentu koja je potrebna. <br />

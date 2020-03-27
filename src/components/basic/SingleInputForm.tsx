@@ -14,7 +14,7 @@ export default function SingleInputForm(props: FormProps){
     function submit(event: any) {
         event.preventDefault();
         props.handleSubmit(value);
-        setValue("")
+        setValue("");
     }
     return <form onSubmit={submit}>
         <div className="flex-container">

@@ -31,7 +31,7 @@ class Main extends Component<{}, {selected: any, pages: any}> {
             <Accordion title="Komponente">
                 <Components />
             </Accordion>
-            <Accordion title="Properties i State">
+            <Accordion title="Properties i State" >
                 <Properties />
                 <State />
             </Accordion>
