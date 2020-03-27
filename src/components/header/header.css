@@ -16,11 +16,6 @@
     height: 100%;
 }
 
-.selected {
-    box-shadow: 0 0 0 3px yellow;
-    color: yellow;
-}
-
 .anchor {
     padding: 0.5em;
     text-decoration: none;
@@ -28,6 +23,11 @@
     background: transparent;
     font-size: 1em;
     border: none
+}
+
+.selected {
+    box-shadow: 0 0 0 3px yellow;
+    color: yellow;
 }
 
 .anchor:hover {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Canvas.css';
 
 interface GraphData {
     label: string;
@@ -24,7 +25,7 @@ export default class Canvas extends React.Component<{
         this.state = {
             canvasHeight: 400,
             canvasWidth: 1000,
-            canvasPadding: 20
+            canvasPadding: 40
         }
     }
     canvas = React.createRef<HTMLCanvasElement>();
@@ -150,6 +151,7 @@ export default class Canvas extends React.Component<{
         let scaleMax: number = this.getMaxScaleValue(maxValue);
         let xCoord: number = this.state.canvasPadding + Math.floor(sectionWidth * 0.2);
         let k: number = this.calculateK(scaleMax, this.state.canvasHeight - this.state.canvasPadding * 2);
+        this.drawCoordLines(ctx, Math.floor(maxValue * k));
         graphData.forEach((gd, index) => {
             columnWidth = this.calculateColumnWidth(gd.array.length, sectionWidth);
             this.centerTextOnCanvas(ctx, gd.label, xCoord, this.state.canvasHeight - this.state.canvasPadding, sectionWidth)
@@ -163,13 +165,18 @@ export default class Canvas extends React.Component<{
     }
 
     drawLabels = (ctx: CanvasRenderingContext2D, labels: string[], colors: string[]) => {
-        let left = this.state.canvasPadding;
+        let left = this.state.canvasPadding * 2;
+        let fontSize = this.state.canvasHeight / 40;
         labels.forEach((label, index) => {
             ctx.fillStyle = colors[index];
             ctx.strokeStyle = colors[index];
             ctx.lineWidth = 1;
-            ctx.font = this.state.canvasHeight / 40 + "px Roboto";
-            ctx.fillText(label, left, 50);
+            ctx.fillRect(left, this.state.canvasPadding / 2 - fontSize, 15, fontSize);
+            ctx.fillStyle = "black";
+            left += 20;
+            ctx.font = fontSize + "px Roboto";
+            ctx.fillText(label, left, this.state.canvasPadding / 2);
+            
             left += ctx.measureText(label).width + 10
         })
     }
@@ -194,7 +201,25 @@ export default class Canvas extends React.Component<{
         ctx.fillText(height + "", left, this.state.canvasHeight - this.state.canvasPadding - top);
     }
 
+    drawCoordLines = (ctx: CanvasRenderingContext2D, graphHeight: number) => {
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(this.state.canvasPadding, this.state.canvasPadding / 2);
+        ctx.lineTo(this.state.canvasPadding, this.state.canvasHeight - this.state.canvasPadding + 1);
+        ctx.lineTo(this.state.canvasWidth - this.state.canvasPadding / 2, this.state.canvasHeight - this.state.canvasPadding + 1);
+        ctx.stroke();
+        ctx.strokeStyle = "#eeeeee";
+        ctx.beginPath();
+        ctx.moveTo(this.state.canvasPadding, this.state.canvasHeight - this.state.canvasPadding - graphHeight);
+        ctx.lineTo(this.state.canvasWidth - this.state.canvasPadding, this.state.canvasHeight - this.state.canvasPadding - graphHeight + 1);
+        ctx.stroke()
+        ctx.moveTo(this.state.canvasPadding, this.state.canvasHeight - this.state.canvasPadding - graphHeight / 2);
+        ctx.lineTo(this.state.canvasWidth - this.state.canvasPadding, this.state.canvasHeight - this.state.canvasPadding - graphHeight / 2 + 1);
+        ctx.stroke()
+    }
+
     render() {
-        return <canvas ref={this.canvas} id="graphCanvas" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
+        return <canvas className="canvas" ref={this.canvas} id="graphCanvas" width={this.state.canvasWidth} height={this.state.canvasHeight}></canvas>
     }
 }

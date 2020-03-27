@@ -73,7 +73,7 @@ export default class GraphForm extends React.Component<{ setGraphData: any }, GF
                 </tbody>
             </table>
             <div className="graph-footer">
-            <button onClick={this.setGraphData} className="graph-button">Prikazi grafikon</button>
+            <button onClick={this.setGraphData} className="graph-button">Prikaži grafikon</button>
             </div>
         </div>
     }

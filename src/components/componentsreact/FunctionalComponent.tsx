@@ -5,8 +5,8 @@ export default function FunctionalComponent(props: any) {
         <div>
             <h3>Function</h3>
             <div>
-                Funkcionalne komponente su komponente koje bi najcesce trebalo upotrebljavati. Kao parametar uzimaju props, dok se state moze realizovati uz pomoc Hooks.
-                Funkcije su blize obicnom JavaScript-u zbog cega je ova vrsta komponente bolja za koriscenje.
+                Funkcionalne komponente su komponente koje bi najčešće trebalo upotrebljavati. Kao parametar uzimaju props, dok se state moze realizovati uz pomoć Hooks. Pre uvođenja Hooks ovaj tip komponente je bio stateless.
+                Funkcije su bliže obicnom JavaScript-u zbog čega je ova vrsta komponente bolja za korišćenje.
             </div>
         </div>
         <div>

@@ -4,7 +4,7 @@ export default function Properties() {
     return <div className="flex-vertical-container">
         <h2>Properties</h2>
         <div>
-            Sve komponente mogu da imaju svoje props (properties). Props su atributi prosledjeni nekoj komponenti. Props su Read-only
+            Sve komponente mogu da imaju svoje props (properties). Props su atributi prosleđeni nekoj komponenti. Props su Read-only
         </div>
         <div>
             Primer

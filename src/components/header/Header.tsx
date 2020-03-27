@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Anchor from '../basic/Anchor';
-import "./header.css";
+import "./Header.css";
 import AnchorType from '../../types/AnchorType';
 
 export default function Header(props: {setSelected: any, selected: string}) {

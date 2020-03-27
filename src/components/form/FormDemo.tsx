@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleInputForm from '../../basic/SingleInputForm';
+import SingleInputForm from '../basic/SingleInputForm';
 
 export default class FormDemo extends React.Component<{}, { submitValues: string[] }> {
     constructor(props: {}) {
@@ -24,9 +24,9 @@ export default class FormDemo extends React.Component<{}, { submitValues: string
     render() {
         return <div>
             <div>
-                Forme u React-u se mogu ponasati kao obicne HTML forme, ali one se cesto obradjuju uz pomoc metoda koje napisemo. <br />
-                Ukoliko koristimo class komponente metode moramo da bind za objekat kome pripada u konstruktoru,
-                 ali ukoliko se koriste arrow metode to nije potrebno jer vec u sebi sadrze "this".<br></br>
+                Forme u React-u se mogu ponašati kao obične HTML forme, ali one se često obrađuju uz pomoc metoda koje napišemo. <br />
+                Ukoliko koristimo class komponente metode moramo da bind za "this" kome pripada u konstruktoru,
+                 ali ukoliko se koriste arrow metode to nije potrebno jer vec u sebi sadrže "this".<br></br>
                  Primer:
             </div>
 

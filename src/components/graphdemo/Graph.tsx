@@ -1,6 +1,6 @@
 import React from 'react';
 import Canvas from './canvas/Canvas';
-import './graph.css'
+import './Graph.css'
 import GraphForm from './graphform/GraphForm';
 import Input from '../basic/Input';
 
@@ -31,7 +31,7 @@ export default class GraphContainer extends React.Component<{}, {
         return <div className="graph-container">
             <h1>Generisanje grafikona</h1>
             <div>
-                Naziv grafikona: 
+                Naziv grafikona&nbsp;
                 <Input 
                 type="text"
                 id="graphname"

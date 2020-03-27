@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import Intro from '../intro/Intro';
-import "./main.css";
+import "./Main.css";
 import Components from '../componentsreact/Components';
 import Properties from '../stateprops/Properties';
 import State from '../stateprops/State';
-import FormDemo from '../demo/form/FormDemo';
+import FormDemo from '../form/FormDemo';
 import Accordion from '../accordion/Accordion';
-import LifecycleDemo from '../demo/lifecycle/LifecycleDemo';
-import GraphContainer from '../graphdemo/GraphContainer';
+import LifecycleDemo from '../lifecycle/LifecycleDemo';
+import GraphContainer from '../graphdemo/Graph';
 import Header from '../header/Header';
+import Hooks from '../hooks/Hooks';
+import Conditional from '../conditionalrendering/Conditional'
 
 
 class Main extends Component<{}, {selected: any, pages: any}> {
@@ -32,11 +34,17 @@ class Main extends Component<{}, {selected: any, pages: any}> {
                 <Properties />
                 <State />
             </Accordion>
-            <Accordion title="Forma">
+            <Accordion title="Forme">
                 <FormDemo />
             </Accordion>
             <Accordion title="Lifecycle metode">
                 <LifecycleDemo />
+            </Accordion>
+            <Accordion title="Hooks">
+                <Hooks />
+            </Accordion>
+            <Accordion title="Conditional Rendering">
+                <Conditional />
             </Accordion>
             </div>,
             graphdemo: <GraphContainer />

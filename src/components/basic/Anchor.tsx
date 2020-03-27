@@ -1,5 +1,4 @@
 import React from 'react';
-import AnchorType from "../../types/AnchorType"
 
 interface AnchorProps {
     class: string;

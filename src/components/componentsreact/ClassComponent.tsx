@@ -6,7 +6,8 @@ class ClassComponent extends React.Component<{}, {}> {
             <div>
                 <h3>Class</h3>
                 <div>
-                    Class komponente za razliku od Function, imaju i svoj state. Takodje moraju sadzati metodu render koja ce kao povratnu vrenost imati element.
+                    Sve class komponente moraju naslediti Component klasu od react-a. Takođe moraju sadržati metodu render koja ce kao povratnu vrenost imati element.
+                    Često sadrže i constructor u kome se nalazi default vrednosti za state ukoliko nam je potreban. Do uvođenja Hooks class komponente su jedine imaje state.
             </div>
             </div>
             <div>

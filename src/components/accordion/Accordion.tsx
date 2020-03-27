@@ -1,5 +1,5 @@
 import React from "react";
-import "./accordion.css"
+import "./Accordion.css"
 
 export default class Accordion extends React.Component<{ children: any, title: string }, { visible: boolean }> {
     constructor(props: any) {
@@ -25,7 +25,7 @@ export default class Accordion extends React.Component<{ children: any, title: s
                     {visible ? <span>&#8722;</span> : <span>&#43;</span>}
                 </button>
             </div>
-            {visible ? <div className="flex-container">{children}</div> : null}
+            {visible && <div className="flex-container">{children}</div>}
         </div>
     }
 }

@@ -19,7 +19,7 @@ export default function SingleInputForm(props: FormProps){
     return <form onSubmit={submit}>
         <div className="flex-container">
         <Input type="text" value={value} onChange={setValue} id="form" placeholder={props.placeholder} class={props.inputClass}/>
-        {props.hideButton ? null : <button className={props.buttonClass}>{props.buttonLabel}</button>}
+        {!props.hideButton && <button className={props.buttonClass}>{props.buttonLabel}</button>}
         </div>
     </form>
 }

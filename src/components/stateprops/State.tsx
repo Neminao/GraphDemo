@@ -4,7 +4,8 @@ export default function State(){
     return <div className="flex-vertical-container">
         <h2>State</h2>
         <div>
-            Class komponente mogu da imaju svoj state. State su atributi koji pripadaju komponenti u kojoj su definisani, za razliku od props koje roditelj prosledjuje i koji su read-only.
+            Komponente mogu da imaju svoj state. State su atributi koji pripadaju komponenti u kojoj su definisani, za razliku od props koje roditelj prosleđuje i koji su read-only. Sa uvođenjem Hooks i funkcionalne komponente mogu realizovati state.
+            Kod class komponenti definiše se u constructoru, a u funkcionalnim korišćenjem useState() hook-a.
         </div>
         <div>
             Primer
